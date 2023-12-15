@@ -697,18 +697,18 @@ _* required_
 
 # Collection Objects <a name="collection_objects"></a>
 
-For GET calls that return a collection of resources, such as /accounts/{id}/orders, the response must be an object that contains an array of the requested resources. The array must be named according to the type of resource it contains. The following table identifies the property name that must be used for each collection call.
+For GET calls that return a collection of resources, such as /accounts/(id)/orders, the response must be an object that contains an array of the requested resources. The array must be named according to the type of resource it contains. The following table identifies the property name that must be used for each collection call.
 
 | Call | Property Name | Resource |
 | ---- | ------------- | -------- |
 | /organizations<br />/organizations?$filter | organizations | Organization |
 | /advertiserbrands<br />/advertiserbrands?$filter | advertiserbrands | AdvertiserBrand |
 | /accounts<br />/accounts?$filter | accounts | Account |
-| /accounts/{id}/assignments<br />/accounts/{id}/assignments?$filter | assignments | Assignment |
-| /accounts/{id}/creatives<br />/accounts/{id}/creatives?$filter | creatives | Creative Assignment |
-| /accounts/{id}/orders<br />/accounts/{id}/orders?$filter | orders | Order Campaign Assignment |
-| /accounts/{id}/orders/{id}/lines<br />/accounts/{id}/orders/lines?$filter | lines | Lines Assignment |
-| /accounts/{id}/orders/{id}/lines/{id}/placements<br />/accounts/{id}/orders/lines{id}/placements?$filter | placements | Placement Assignment |
+| /accounts/(id)/assignments<br />/accounts/(id)/assignments?$filter | assignments | Assignment |
+| /accounts/(id)/creatives<br />/accounts/(id)/creatives?$filter | creatives | Creative Assignment |
+| /accounts/(id)/orders<br />/accounts/(id)/orders?$filter | orders | Order Campaign Assignment |
+| /accounts/(id)/orders/(id)/lines<br />/accounts/(id)/orders/lines?$filter | lines | Lines Assignment |
+| /accounts/(id)/orders/(id)/lines/(id)/placements<br />/accounts/(id)/orders/lines(id)/placements?$filter | placements | Placement Assignment |
 | /products<br />/products/search (POST) | products | Product Assignment |
 | /products/avails (POST) | avails | Avails
 
@@ -743,7 +743,7 @@ Publishers must support authenticating advertiser and agency users. Publishers m
 Each request must include an AccessToken header that is set to the user’s access token. If the token is not valid, the request must fail with HTTP status code 401 Unauthorized. 
 
 ## Versioning <a name="versioning"></a>
-Versioning occurs at the API level and is URI based. All services that make up the API must use the same version number. The version may fall anywhere in the path before the resource and must have the form vn, where n is a positive integer. For example, in the URI https://\<host\>/api/v1/accounts/{id}, v1 indicates version 1 of the API.
+Versioning occurs at the API level and is URI based. All services that make up the API must use the same version number. The version may fall anywhere in the path before the resource and must have the form vn, where n is a positive integer. For example, in the URI https://\<host\>/api/v1/accounts/(id), v1 indicates version 1 of the API.
 
 ## HTTP Error Codes/Error Handling <a name="http_error_codes"></a>
 The publisher must support the following HTTP status codes.
@@ -839,42 +839,42 @@ Header Name: _**X-Total-Count**_
 | Resource | URI | Verbs | Required |
 | -------- | --- | ----- | -------- |
 | Account | /accounts | GET, POST | Yes |
-| Account | /accounts/{id} | GET | Yes |
+| Account | /accounts/(id) | GET | Yes |
 | Account | /accounts?$filter= | GET | Yes |
 | AdvertiserBrands     | /advertiserbrands                             | GET                | No       |
-| AdvertiserBrands     | /advertiserbrands/{id}                        | GET                | No       |
+| AdvertiserBrands     | /advertiserbrands/(id)                        | GET                | No       |
 | AdvertiserBrands     | /advertiserbrands?$filter=                    | GET                | No       |
-| Assignment | /accounts/{id}/assignments | GET, POST | Yes |
-| Assignment | /accounts/{id}/assignments/{id} | GET, PUT or<br />PATCH, DELETE | Yes |
-| Assignment | /accounts/{id}/assignments/{id}?disable | PUT or PATCH | Yes |
-| Assignment | /accounts/{id}/assignments?$filter= | GET | No |
-| Creative | /accounts/{id}/creatives | GET, POST | Yes |
-| Creative | /accounts/{id}/creatives/{id} | GET, PUT or<br />PATCH, DELETE | Yes |
-| Creative | /accounts/{id}/creatives?$filter= | GET | No |
-| Order | /accounts/{id}/orders | GET, POST | Yes |
-| Order | /accounts/{id}/orders{id} | GET, PUT or<br />PATCH, DELETE | Yes |
-| Order | /accounts/{id}/orders?$filter= | GET | YES |
-| Line | /accounts/{id}/orders/{id}/lines | GET, POST | Yes |
-| Line | /accounts/{id}/orders/{id}/lines/{id} | GET, PUT or<br />PATCH, DELETE | Yes |
-| Line | /accounts/{id}/orders/{id}/lines/{id}?book | PUT or PATCH | Yes |
-| Line | /accounts/{id}/orders/{id}/lines/{id}?reserve | PUT or PATCH | Yes
-| Line | /accounts/{id}/orders/{id}/lines/{id}?cancel | PUT or PATCH | Yes
-| Line | /accounts/{id}/orders/{id}/lines/{id}?reset | PUT or PATCH | Yes
+| Assignment | /accounts/(id)/assignments | GET, POST | Yes |
+| Assignment | /accounts/(id)/assignments/(id) | GET, PUT or<br />PATCH, DELETE | Yes |
+| Assignment | /accounts/(id)/assignments/(id)?disable | PUT or PATCH | Yes |
+| Assignment | /accounts/(id)/assignments?$filter= | GET | No |
+| Creative | /accounts/(id)/creatives | GET, POST | Yes |
+| Creative | /accounts/(id)/creatives/(id) | GET, PUT or<br />PATCH, DELETE | Yes |
+| Creative | /accounts/(id)/creatives?$filter= | GET | No |
+| Order | /accounts/(id)/orders | GET, POST | Yes |
+| Order | /accounts/(id)/orders(id) | GET, PUT or<br />PATCH, DELETE | Yes |
+| Order | /accounts/(id)/orders?$filter= | GET | YES |
+| Line | /accounts/(id)/orders/(id)/lines | GET, POST | Yes |
+| Line | /accounts/(id)/orders/(id)/lines/(id) | GET, PUT or<br />PATCH, DELETE | Yes |
+| Line | /accounts/(id)/orders/(id)/lines/(id)?book | PUT or PATCH | Yes |
+| Line | /accounts/(id)/orders/(id)/lines/(id)?reserve | PUT or PATCH | Yes
+| Line | /accounts/(id)/orders/(id)/lines/(id)?cancel | PUT or PATCH | Yes
+| Line | /accounts/(id)/orders/(id)/lines/(id)?reset | PUT or PATCH | Yes
 | Organizations | /organizations | GET, POST | Yes |
-| Organizations | /organizations/{id} | GET, PUT or<br />PATCH, DELETE | Yes |
+| Organizations | /organizations/(id) | GET, PUT or<br />PATCH, DELETE | Yes |
 | Organizations | /organizations?$filter= | GET | No |
 | Products | /products | GET | Yes |
-| Products | /products/{id} | GET | Yes |
+| Products | /products/(id) | GET | Yes |
 | Products | /products/search | POST | Yes |
 | Products | /products/avails | POST | Yes |
-| ChangeRequest | /accounts/{id}/changerequest | GET, POST | Yes |
-| ChangeRequest | /accounts/{id}/changesrequests/{id} | GET, PUT or<br />PATCH, DELETE | Yes |
-| ChangeRequest | /accounts/{id}/changerequest?$filter= | GET | Yes |
-| ChangeRequest | /accounts/{id}/changesrequests/{id}/approve | PUT | Yes |
-| ChangeRequest | /accounts/{id}/changesrequests/{id}/reject | PUT | Yes |
-| ChangeRequestLine | /accounts/{id}/changesrequests/{id}/lines | GET, POST | Yes |
-| ChangeRequestLine | /accounts/{id}/changesrequests//lines/{id} | GET, PUT or<br />PATCH | Yes |
-| ChangeRequestLine | /accounts/{id}/changesrequests//lines?$filter= | GET | Yes |
+| ChangeRequest | /accounts/(id)/changerequest | GET, POST | Yes |
+| ChangeRequest | /accounts/(id)/changesrequests/(id) | GET, PUT or<br />PATCH, DELETE | Yes |
+| ChangeRequest | /accounts/(id)/changerequest?$filter= | GET | Yes |
+| ChangeRequest | /accounts/(id)/changesrequests/(id)/approve | PUT | Yes |
+| ChangeRequest | /accounts/(id)/changesrequests/(id)/reject | PUT | Yes |
+| ChangeRequestLine | /accounts/(id)/changesrequests/(id)/lines | GET, POST | Yes |
+| ChangeRequestLine | /accounts/(id)/changesrequests//lines/(id) | GET, PUT or<br />PATCH | Yes |
+| ChangeRequestLine | /accounts/(id)/changesrequests//lines?$filter= | GET | Yes |
 
 ## URI Filter Guidance <a name="uri_filter_guidance"></a>
 The following examples show the reccomended implememtiation support for the url filter function
@@ -1053,7 +1053,7 @@ Content-Length: 2079
 }
 ```
 
-### /advertiserbrands/{id} ###
+### /advertiserbrands/(id) ###
 Gets the specified Account.
 
 #### Verb ####
@@ -1243,7 +1243,7 @@ Content-Length: 187
 }
 ```
 
-### /accounts/{id} ###
+### /accounts/(id) ###
 Gets the specified Account.
 
 #### Verb ####
@@ -1328,7 +1328,7 @@ Content-Length: 187
 
 Account assignments associate a creative with a line.
 
-### /accounts/{id}/assignments ###
+### /accounts/(id)/assignments ###
 
 Adds an Assignment or gets a list of assignments that the user has access to.
 
@@ -1475,7 +1475,7 @@ Content-Length: 1171
 }
 ```
 
-### /accounts/{id}/assignments/{id} ###
+### /accounts/(id)/assignments/(id) ###
 Gets, updates, or deletes the specified Assignment.
 
 #### Verbs ####
@@ -1556,7 +1556,7 @@ Content-Length: 689
 }
 ```
 
-### /accounts/{id}/assignments/{id}?disable ###
+### /accounts/(id)/assignments/(id)?disable ###
 Prevents a creative from running or stops a creative that is currently running.
 
 #### Verbs ####
@@ -1585,7 +1585,7 @@ Content-Length: 108
 }
 ```
 
-### /accounts/{id}/assignments?$filter= ###
+### /accounts/(id)/assignments?$filter= ###
 
 Gets a list of Assignments that match the specified filter criteria.
 
@@ -1661,7 +1661,7 @@ Content-Length: 1171
 
 Account creative hold all creative for the advertiser identified for an account. These creative can be assigned to one or more lines for one or more orders under the account using the assignment object.
 
-### /accounts/{id}/creatives
+### /accounts/(id)/creatives
 
 Adds a Creative or gets a list of creatives that the user has access to. The response must support pagination. See Paging Query Parameters.
 
@@ -1803,7 +1803,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 187
 }
 ```
 
-### /accounts/{id}/creatives/{id}
+### /accounts/(id)/creatives/(id)
 
 Gets, updates, or deletes the specified Creative.
 
@@ -1917,7 +1917,7 @@ Content-Type: application/json Content-Length: 308
 }
 ```
 
-### /accounts/{id}/creatives?$filter=
+### /accounts/(id)/creatives?$filter=
 
 The response must support pagination. See Paging Query Parameters.
 
@@ -1982,7 +1982,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 308
 
 Account orders hold a collection of lines. The account owns the orders and the order owns the lines.
 
-### /accounts/{id}/orders
+### /accounts/(id)/orders
 
 Adds an Order or gets a list of orders that the user has access to. The response must support pagination. See Paging Query Parameters.
 
@@ -2092,7 +2092,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 187
 }
 ```
 
-### /accounts/{id}/orders/{id}
+### /accounts/(id)/orders/(id)
 
 Gets, updates or deletes the specified Order.
 
@@ -2166,7 +2166,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 358
 }
 ```
 
-### /accounts/{id}/orders?$filter=
+### /accounts/(id)/orders?$filter=
 
 The response must support pagination. See Paging Query Parameters.
 
@@ -2248,7 +2248,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 187
 Lines hold the product details that are added to an order for an account. 
 
 
-### /accounts/{id}/orders/{id}/lines
+### /accounts/(id)/orders/(id)/lines
 
 Adds a Line to an order or gets a list of lines that the user has access to. The response must support pagination. See Paging Query Parameters.
 
@@ -2539,7 +2539,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 1240
 }
 ```
 
-### /accounts/{id}/orders/{id}/lines/{id}
+### /accounts/(id)/orders/(id)/lines/(id)
 
 Gets, updates, or deletes the specified Line.
 
@@ -2706,7 +2706,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 1240
 } 
 ```
 
-### /accounts/{id}/orders/{id}/lines?$filter=
+### /accounts/(id)/orders/(id)/lines?$filter=
 
 #### Description
 
@@ -2722,7 +2722,7 @@ The response must support pagination. See Paging Query Parameters.
 
 May also support getting a list by IDs.
 
-### accounts/{id}/orders/{id}/lines/{id}?book
+### accounts/(id)/orders/(id)/lines/(id)?book
 
 Books the line.
 
@@ -2814,7 +2814,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 1239
 } 
 ```
 
-### /accounts/{id}/orders/{id}/lines/{id}?reserve
+### /accounts/(id)/orders/(id)/lines/(id)?reserve
 
 Reserves the line.
 
@@ -2896,7 +2896,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 458
 } 
 ```
 
-### /accounts/{id}/orders/{id}/lines/{id}?cancel
+### /accounts/(id)/orders/(id)/lines/(id)?cancel
 
 Cancels the line.
 
@@ -2974,7 +2974,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 658
 } 
 ```
 
-### /accounts/{id}/orders/{id}/lines/{id}?reset
+### /accounts/(id)/orders/(id)/lines/(id)?reset
 
 Moves the line back to the Draft state.
 
@@ -3135,7 +3135,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 1879
 }
 ```
 
-### /organization/{id}
+### /organization/(id)
 
 Gets the specified organization.
 
@@ -3512,7 +3512,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 5899
 }
 ```
 
-### /product/{id}
+### /product/(id)
 
 Gets the specified Product from the product catalog.
 
@@ -4030,7 +4030,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 5899
 
 Change requests are used to make a change to the order.
 
-### /accounts/{id}/changerequests
+### /accounts/(id)/changerequests
 
 Gets all change requests for an account.
 
@@ -4131,7 +4131,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 5899
 ```
 
 
-### /accounts/{id}/changesrequests/{id}
+### /accounts/(id)/changesrequests/(id)
 
 Gets a specified change request.
 
@@ -4215,7 +4215,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 358
 ```
 
 
-### /accounts/{id}/changerequest?$filter=
+### /accounts/(id)/changerequest?$filter=
 
 Searches for change requests.
 
@@ -4229,7 +4229,7 @@ Searches for change requests.
 May support getting a list by IDs.
 
 
-### /accounts/{id}/changesrequests/{id}/approve
+### /accounts/(id)/changesrequests/(id)/approve
 
 Approves a achange requests for an account.
 
@@ -4273,7 +4273,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 358
 ```
 
 
-### /accounts/{id}/changesrequests/{id}/reject
+### /accounts/(id)/changesrequests/(id)/reject
 
 Rejects a change request for an account.
 
@@ -4320,7 +4320,7 @@ HTTP/1.1 200 OK Content-Type: application/json Content-Length: 358
 
 Change requests at the line level for an order.
 
-### /accounts/{id}/changerequests/{id}/lines
+### /accounts/(id)/changerequests/(id)/lines
 
 Gets all change requests for a specified line.
 
@@ -4440,7 +4440,7 @@ AccessToken: <OAuth token>
 
 
 
-### /accounts/{id}/changesrequests/{id}/line{id}
+### /accounts/(id)/changesrequests/(id)/line/(id)
 
 Gets a specified change request for an account.
 
@@ -4535,7 +4535,7 @@ AccessToken: <OAuth token>
 }
 ````
 
-### /accounts/{id}/changesrequests/lines?$filter=
+### /accounts/(id)/changesrequests/lines?$filter=
 
 Searches for lines that have a ChangeRequestPending status within a specified account.
 
@@ -4550,7 +4550,7 @@ May support getting a list by IDs.
 
 ## Path: Account Order Line Stats
 
-### /accounts/{id}/order/{id}/line/{id}/stats
+### /accounts/(id)/order/(id)/line/(id)/stats
 
 Get the delivery statistics for a specific Line in an Order
 
@@ -4654,7 +4654,7 @@ stats : [
 
 ## Path:  Account Messages <a name="path_accounts_messages"></a>
 
-### /accounts/{id}/messages
+### /accounts/(id)/messages
 
 Gets or creates messages in the platform.
 
@@ -4756,7 +4756,7 @@ AccessToken: <OAuth token>
 }
 ```
 
-### /accounts/{id}/messages/{id}
+### /accounts/(id)/messages/(id)
 
 Gets or updates a single messages in the platform.
 
@@ -4879,7 +4879,7 @@ The following provides several options for getting product inventory details. Ty
 
 To get a product catalog to display to the user, send a GET request to /products. The response includes a collection object that contains an array of Product objects. The Product object contains the product’s base rate and estimated daily impressions (for example, hundreds of thousands). Providers should not use the avails search method (option 3) to determine estimated avails.
 
-* To get a specific product from the catalog, send a GET request to /products/{id}. The response contains a Product object.
+* To get a specific product from the catalog, send a GET request to /products/(id). The response contains a Product object.
 
 To search the product catalog, send a POST request to /products/search. The body of the request is a ProductSearch object that contains the search criteria. For example, the client may search the catalog for products that use a specific ad format. The response includes a collection object that contains an array Product objects that match the search criteria. If no products match the search criteria, the array is empty.
 
@@ -4893,36 +4893,36 @@ Note that the caller should not use this call to determine the maximum available
 
 ## Creating an Order <a name="creating_an_order"></a>
 
-An order is the parent container for lines. To add an order, send a POST request to /accounts/{id}/orders. The body of the request is an Order object, which specifies directional start and end dates, estimated budget, currency, and preferred billing method. The response includes the Location header that contains the URI to the new order.
+An order is the parent container for lines. To add an order, send a POST request to /accounts/(id)/orders. The body of the request is an Order object, which specifies directional start and end dates, estimated budget, currency, and preferred billing method. The response includes the Location header that contains the URI to the new order.
 
 ## Adding Lines to the Order <a name="adding_lines_to_the_order"></a>
 
-A line specifies the ad product to book, quantity, targeting details, and a date range of when the line runs. To add a line to the order, send a POST request to /accounts/{id}/orders/{id}/lines. The body of the request is a Line resource object. Typically, the client should specify the same details on the line that were used to search for product availability.
+A line specifies the ad product to book, quantity, targeting details, and a date range of when the line runs. To add a line to the order, send a POST request to /accounts/(id)/orders/(id)/lines. The body of the request is a Line resource object. Typically, the client should specify the same details on the line that were used to search for product availability.
 
 The response includes the Location header that contains the URI to the new line. The state of the line is Draft.
 
-The line may be updated only in the Draft state. To update a line, send a PATCH or PUT request to /accounts/{id}/orders/{id}/lines/{id}. The body of the request is either a full or partial Line resource object depending on whether the publisher supports PUT or PATCH.
+The line may be updated only in the Draft state. To update a line, send a PATCH or PUT request to /accounts/(id)/orders/(id)/lines/(id). The body of the request is either a full or partial Line resource object depending on whether the publisher supports PUT or PATCH.
 
 ## Uploading a Creative and Assigning It to a Placement <a name="uploading_a_creative_and_assigning_i_to_a_placement"></a>
 
-To upload a creative, send a POST request to /accounts/{id}/creatives. The body of the request is a Creative resource object. The Creative object specifies the creative’s format, size, language, and the creative itself.
+To upload a creative, send a POST request to /accounts/(id)/creatives. The body of the request is a Creative resource object. The Creative object specifies the creative’s format, size, language, and the creative itself.
 
-In most cases, the creative must pass editorial review before it may be assigned to a line. The requirement to add creative before assignment is specified for the product. To determine whether the creative passed editorial review, send a GET request to /accounts/{id}/creative/{id}. The response contains a Creative object. The creative passed editorial review if AdStatus is set to Approved.
+In most cases, the creative must pass editorial review before it may be assigned to a line. The requirement to add creative before assignment is specified for the product. To determine whether the creative passed editorial review, send a GET request to /accounts/(id)/creative/(id). The response contains a Creative object. The creative passed editorial review if AdStatus is set to Approved.
 
-To assign the creative to a line after it passes editorial review, send a POST request to /accounts/{id}/assignments. The body of the request is an Assignment object. The Assignment object specifies the creative ID and placement ID. If you assign more than one creative to a line, the creatives are rotated evenly. To control the rotation, set the optional share of voice property.
+To assign the creative to a line after it passes editorial review, send a POST request to /accounts/(id)/assignments. The body of the request is an Assignment object. The Assignment object specifies the creative ID and placement ID. If you assign more than one creative to a line, the creatives are rotated evenly. To control the rotation, set the optional share of voice property.
 
 Note that a line must have a creative assigned to it before it may be booked. The creative may be the actual creative that the advertiser plans to run or a placeholder creative that is later replaced with the actual creative when it becomes available. However, the line will run with whichever creative is assigned to it (the actual creative or placeholder creative).
 
 ## Reserving, Booking, and Canceling a Line <a name="beserving_booking_and_canceling_a_line"></a>
 
 To reserve, book, or cancel a line, send a PATCH or PUT request to the following URIs, respectively.
-> /accounts/{id}/orders/{id}/lines/{id}?reserve
+> /accounts/(id)/orders/(id)/lines/(id)?reserve
 
-> /accounts/{id}/orders/{id}/lines/{id}?book
+> /accounts/(id)/orders/(id)/lines/(id)?book
 
-> /accounts/{id}/orders/{id}/lines/{id}?cancel
+> /accounts/(id)/orders/(id)/lines/(id)?cancel
 
-Each call initiates an asynchronous process to perform the work. To determine whether the request succeeded, send a GET request to /accounts/{id}/orders/{id}/lines/{id} to get the specified line. Access the BookingStatus property to verify that the status changed accordingly. For example, if the request was reserve, confirm that BookingStatus is Reserved. If the reservation or booking process failed, the status will be Declined. To determine why the request was declined, access the StateChangeReason property.
+Each call initiates an asynchronous process to perform the work. To determine whether the request succeeded, send a GET request to /accounts/(id)/orders/(id)/lines/(id) to get the specified line. Access the BookingStatus property to verify that the status changed accordingly. For example, if the request was reserve, confirm that BookingStatus is Reserved. If the reservation or booking process failed, the status will be Declined. To determine why the request was declined, access the StateChangeReason property.
 
 ## Diagrams <a name="diagrams"></a>
 
